@@ -32,8 +32,17 @@ class App extends Component {
         console.log(err)
     });
   }
-  
-  // You'll need to make sure you have the right properties on state and pass them down to props.
+
+  deleteSmurf = id => {
+    axios
+      .delete(`http://localhost:3333/smurfs/${id}`)
+      .then(res => {
+        this.setState({ smurfs: res.data });
+        this.props.history.push('/');
+      })
+      .catch(err => console.log(err));
+  }
+
   render() {
     return (
       <div className="App">
@@ -48,7 +57,8 @@ class App extends Component {
         <Route
           exact path="/"
           render={ props => <Smurfs {...props} 
-          smurfs={this.state.smurfs} />}
+          smurfs={this.state.smurfs}
+          deleteSmurf={this.deleteSmurf} />}
         />
       </div>
     );

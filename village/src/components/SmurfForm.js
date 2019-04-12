@@ -11,8 +11,8 @@ class SmurfForm extends Component {
     };
   }
 
-  addSmurf = event => {
-    event.preventDefault();
+  addSmurf = () => {
+    // e.preventDefault();
     
     axios
       .post('http://localhost:3333/smurfs', {name: this.state.name, age: this.state.age, height: this.state.height})
